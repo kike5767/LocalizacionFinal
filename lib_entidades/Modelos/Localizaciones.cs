@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 namespace lib_entidades.Modelos
 {
     // Esta clase sera la mas escencial ya que se relaciona con las demas para poder generar una localizacion
-    internal class Localizaciones
+    public class Localizaciones
     {
         // Atributos y propiedades
         [Key] public int Id { get; set; }
