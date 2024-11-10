@@ -25,14 +25,11 @@ namespace mst_pruebas.Repositorios
         [TestMethod]
         public void Ejecutar()
         {
-            Listar();
             Guardar();
-        }
-
-        private void Listar()
-        {
-            var lista = iRepositorio!.Listar();
-            Assert.IsTrue(lista.Count > 0);
+            Listar();
+            Buscar();
+            Modificar();
+            Borrar();
         }
 
         private void Guardar()
@@ -45,6 +42,32 @@ namespace mst_pruebas.Repositorios
             };
             entidad = iRepositorio!.Guardar(entidad);
             Assert.IsTrue(entidad.Id != 0);
+        }
+        private void Listar()
+        {
+            var lista = iRepositorio!.Listar();
+            Assert.IsTrue(lista.Count > 0);
+        }
+        public void Buscar()
+        {
+            var lista = iRepositorio!.Buscar(x => x.Id ==
+           entidad!.Id);
+            Assert.IsTrue(lista.Count > 0);
+        }
+        private void Modificar()
+        {
+            entidad!.Latitud = 4.244922241492459M;
+            entidad = iRepositorio!.Modificar(entidad!);
+            var lista = iRepositorio!.Buscar(x => x.Id ==
+           entidad!.Id);
+            Assert.IsTrue(lista.Count > 0);
+        }
+        private void Borrar()
+        {
+            entidad = iRepositorio!.Borrar(entidad!);
+            var lista = iRepositorio!.Buscar(x => x.Id ==
+           entidad!.Id);
+            Assert.IsTrue(lista.Count == 0);
         }
     }
 }
