@@ -9,8 +9,14 @@ namespace lib_entidades.Modelos
     {
         // Atributos y propiedades
         [Key] public int Id { get; set; }
-        public string? Url { get; set; } 
+        public string? Url { get; set; }
 
         // Metodos
+        public bool Validar()
+        {
+            if (string.IsNullOrEmpty(Url))
+                return false;
+            return true;
+        }
     }
 }

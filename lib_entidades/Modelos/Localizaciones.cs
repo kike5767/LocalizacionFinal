@@ -16,7 +16,14 @@ namespace lib_entidades.Modelos
         public int detalles { get; set; }
         public TimeSpan Hora { get; set; }
         public bool Activo { get; set; }
+        public string? test {  get; set; }
 
         // Metodos
+        public bool Validar()
+        {
+            if (personas < 10)
+                return false;
+            return true;
+        }
     }
 }

@@ -12,7 +12,14 @@ namespace lib_entidades.Modelos
         public decimal Latitud { get; set; }
         public decimal Longitud { get; set; }
         public bool Activo { get; set; }
+        public string test {  get; set; }
 
         // Metodos
+        public bool Validar()
+        {
+            if (Activo == true)
+                return false;
+            return true;
+        }
     }
 }

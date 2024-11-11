@@ -14,8 +14,16 @@ namespace lib_entidades.Modelos
         public string? CodigoPostal { get; set; } 
         public string? Ciudad { get; set; }
         public string? Barrio { get; set; } 
-        public string? Calle { get; set; } 
+        public string? Calle { get; set; }
 
         // Metodos
+        public bool Validar()
+        {
+            if (string.IsNullOrEmpty(Pais))
+                return false;
+            if (Estado == null)
+                return false;
+            return true;
+        }
     }
 }

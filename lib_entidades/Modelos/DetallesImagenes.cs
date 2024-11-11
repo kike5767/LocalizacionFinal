@@ -16,5 +16,13 @@ namespace lib_entidades.Modelos
         public bool Activo { get; set; }
 
         // Metodos
+        public bool Validar()
+        {
+            if (string.IsNullOrEmpty(Autor))
+                return false;
+            if (Fecha == null)
+                return false;
+            return true;
+        }
     }
 }
