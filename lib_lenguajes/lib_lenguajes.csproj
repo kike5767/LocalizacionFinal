@@ -17,6 +17,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>RsMenu.resx</DependentUpon>
     </Compile>
+    <Compile Update="RsPersonas.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>RsPersonas.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -27,6 +32,10 @@
     <EmbeddedResource Update="RsMenu.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>RsMenu.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="RsPersonas.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>RsPersonas.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
 

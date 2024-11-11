@@ -22,21 +22,21 @@ namespace lib_lenguajes {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class RsMenu {
+    public class RsMenu {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal RsMenu() {
+        public RsMenu() {
         }
         
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("lib_lenguajes.RsMenu", typeof(RsMenu).Assembly);
@@ -51,7 +51,7 @@ namespace lib_lenguajes {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace lib_lenguajes {
         /// <summary>
         ///   Looks up a localized string similar to ..
         /// </summary>
-        internal static string lbAccion {
+        public static string lbAccion {
             get {
                 return ResourceManager.GetString("lbAccion", resourceCulture);
             }
@@ -72,7 +72,7 @@ namespace lib_lenguajes {
         /// <summary>
         ///   Looks up a localized string similar to Borrar.
         /// </summary>
-        internal static string lbBorrar {
+        public static string lbBorrar {
             get {
                 return ResourceManager.GetString("lbBorrar", resourceCulture);
             }
@@ -81,7 +81,7 @@ namespace lib_lenguajes {
         /// <summary>
         ///   Looks up a localized string similar to ¿Desea borrar la siguiente información?.
         /// </summary>
-        internal static string lbBorrarEntidad {
+        public static string lbBorrarEntidad {
             get {
                 return ResourceManager.GetString("lbBorrarEntidad", resourceCulture);
             }
@@ -90,7 +90,7 @@ namespace lib_lenguajes {
         /// <summary>
         ///   Looks up a localized string similar to Cancelar.
         /// </summary>
-        internal static string lbCancelar {
+        public static string lbCancelar {
             get {
                 return ResourceManager.GetString("lbCancelar", resourceCulture);
             }
@@ -99,7 +99,7 @@ namespace lib_lenguajes {
         /// <summary>
         ///   Looks up a localized string similar to Cerrar.
         /// </summary>
-        internal static string lbCerrar {
+        public static string lbCerrar {
             get {
                 return ResourceManager.GetString("lbCerrar", resourceCulture);
             }
@@ -108,7 +108,7 @@ namespace lib_lenguajes {
         /// <summary>
         ///   Looks up a localized string similar to Entrar.
         /// </summary>
-        internal static string lbEntrar {
+        public static string lbEntrar {
             get {
                 return ResourceManager.GetString("lbEntrar", resourceCulture);
             }
@@ -117,7 +117,7 @@ namespace lib_lenguajes {
         /// <summary>
         ///   Looks up a localized string similar to Error autenticación.
         /// </summary>
-        internal static string lbErrorAutenticacion {
+        public static string lbErrorAutenticacion {
             get {
                 return ResourceManager.GetString("lbErrorAutenticacion", resourceCulture);
             }
@@ -126,7 +126,7 @@ namespace lib_lenguajes {
         /// <summary>
         ///   Looks up a localized string similar to Error guardando en base de datos.
         /// </summary>
-        internal static string lbErrorBaseDeDatos {
+        public static string lbErrorBaseDeDatos {
             get {
                 return ResourceManager.GetString("lbErrorBaseDeDatos", resourceCulture);
             }
@@ -135,7 +135,7 @@ namespace lib_lenguajes {
         /// <summary>
         ///   Looks up a localized string similar to Error comunicación.
         /// </summary>
-        internal static string lbErrorComunicacion {
+        public static string lbErrorComunicacion {
             get {
                 return ResourceManager.GetString("lbErrorComunicacion", resourceCulture);
             }
@@ -144,7 +144,7 @@ namespace lib_lenguajes {
         /// <summary>
         ///   Looks up a localized string similar to Por favor, valide, hace falta información o no está en los límites.
         /// </summary>
-        internal static string lbFaltaInformacion {
+        public static string lbFaltaInformacion {
             get {
                 return ResourceManager.GetString("lbFaltaInformacion", resourceCulture);
             }
@@ -153,7 +153,7 @@ namespace lib_lenguajes {
         /// <summary>
         ///   Looks up a localized string similar to Guardar.
         /// </summary>
-        internal static string lbGuardar {
+        public static string lbGuardar {
             get {
                 return ResourceManager.GetString("lbGuardar", resourceCulture);
             }
@@ -162,7 +162,7 @@ namespace lib_lenguajes {
         /// <summary>
         ///   Looks up a localized string similar to Limpiar.
         /// </summary>
-        internal static string lbLimpiar {
+        public static string lbLimpiar {
             get {
                 return ResourceManager.GetString("lbLimpiar", resourceCulture);
             }
@@ -171,7 +171,7 @@ namespace lib_lenguajes {
         /// <summary>
         ///   Looks up a localized string similar to Por favor, Llame al administrador.
         /// </summary>
-        internal static string lbLlameAlAdmin {
+        public static string lbLlameAlAdmin {
             get {
                 return ResourceManager.GetString("lbLlameAlAdmin", resourceCulture);
             }
@@ -180,7 +180,7 @@ namespace lib_lenguajes {
         /// <summary>
         ///   Looks up a localized string similar to Alguno de los datos tiene mal formato.
         /// </summary>
-        internal static string lbMalFormato {
+        public static string lbMalFormato {
             get {
                 return ResourceManager.GetString("lbMalFormato", resourceCulture);
             }
@@ -189,7 +189,7 @@ namespace lib_lenguajes {
         /// <summary>
         ///   Looks up a localized string similar to Mensaje.
         /// </summary>
-        internal static string lbMensaje {
+        public static string lbMensaje {
             get {
                 return ResourceManager.GetString("lbMensaje", resourceCulture);
             }
@@ -198,7 +198,7 @@ namespace lib_lenguajes {
         /// <summary>
         ///   Looks up a localized string similar to Editar.
         /// </summary>
-        internal static string lbModicar {
+        public static string lbModicar {
             get {
                 return ResourceManager.GetString("lbModicar", resourceCulture);
             }
@@ -207,7 +207,7 @@ namespace lib_lenguajes {
         /// <summary>
         ///   Looks up a localized string similar to Notas.
         /// </summary>
-        internal static string lbNotas {
+        public static string lbNotas {
             get {
                 return ResourceManager.GetString("lbNotas", resourceCulture);
             }
@@ -216,16 +216,25 @@ namespace lib_lenguajes {
         /// <summary>
         ///   Looks up a localized string similar to Nuevo.
         /// </summary>
-        internal static string lbNuevo {
+        public static string lbNuevo {
             get {
                 return ResourceManager.GetString("lbNuevo", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Personas.
+        /// </summary>
+        public static string lbPersonas {
+            get {
+                return ResourceManager.GetString("lbPersonas", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Refrescar.
         /// </summary>
-        internal static string lbRefrescar {
+        public static string lbRefrescar {
             get {
                 return ResourceManager.GetString("lbRefrescar", resourceCulture);
             }
@@ -234,7 +243,7 @@ namespace lib_lenguajes {
         /// <summary>
         ///   Looks up a localized string similar to Elegir.
         /// </summary>
-        internal static string lbSeleccionar {
+        public static string lbSeleccionar {
             get {
                 return ResourceManager.GetString("lbSeleccionar", resourceCulture);
             }
@@ -243,7 +252,7 @@ namespace lib_lenguajes {
         /// <summary>
         ///   Looks up a localized string similar to Por favor, valide, los datos ingresados.
         /// </summary>
-        internal static string lbValideDatos {
+        public static string lbValideDatos {
             get {
                 return ResourceManager.GetString("lbValideDatos", resourceCulture);
             }
