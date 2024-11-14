@@ -24,12 +24,12 @@ namespace asp_presentacion
             services.AddScoped<IPersonasComunicacion, PersonasComunicacion>();
             services.AddScoped<IUbicacionesComunicacion, UbicacionesComunicacion>();
             // Presentaciones
-            services.AddScoped<IDetallesImagenesComunicacion, DetallesImagenesComunicacion>();
-            services.AddScoped<IImagenesComunicacion, ImagenesComunicacion>();
-            services.AddScoped<ILocalidadesComunicacion, LocalidadesComunicacion>();
-            services.AddScoped<ILocalizacionesComunicacion, LocalizacionesComunicacion>();
-            services.AddScoped<IPersonasComunicacion, PersonasComunicacion>();
-            services.AddScoped<IUbicacionesComunicacion, UbicacionesComunicacion>();
+            services.AddScoped<IDetallesImagenesPresentacion, DetallesImagenesPresentacion>();
+            services.AddScoped<IImagenesPresentacion, ImagenesPresentacion>();
+            services.AddScoped<ILocalidadesPresentacion, LocalidadesPresentacion>();
+            services.AddScoped<ILocalizacionesPresentacion, LocalizacionesPresentacion>();
+            services.AddScoped<IPersonasPresentacion, PersonasPresentacion>();
+            services.AddScoped<IUbicacionesPresentacion, UbicacionesPresentacion>();
 
             services.AddControllers();
             services.AddEndpointsApiExplorer();
