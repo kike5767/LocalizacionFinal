@@ -61,12 +61,12 @@
             @if (Model.Accion == lib_utilidades.Enumerables.Ventanas.Editar)
             {
                 <div class="containers_vn panel panel-default">
-                    <h3>@lib_lenguajes.RsPersonas.lbSingular</h3>
+                    <h3>Localizaciones</h3>
 
                     <div>
                         <div class="form-group">
                             <label class="col-lg-4 control-label">
-                                @lib_lenguajes.RsPersonas.lbPersona
+                                Nombre
                             </label>
                             <div class="col-lg-6">
                                 <input id="nmPersona"
@@ -76,17 +76,34 @@
                         </div>
                         <div class="form-group">
                             <label class="col-lg-4 control-label">
-                                @lib_lenguajes.RsPersonas.lbCedula
+                                Cedula
                             </label>
                             <div class="col-lg-6">
-                                <input id="nmNota1"
+                                <input id="nmCedula"
                                        class="cts_forms form-control"
                                        asp-for="@Model.Actual!.Cedula" />
                             </div>
                         </div>
-                        
-                        
-                       
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">
+                                Edad
+                            </label>
+                            <div class="col-lg-6">
+                                <input id="nmEdad"
+                                       class="cts_forms form-control"
+                                       asp-for="@Model.Actual!.Edad" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">
+                                Activo
+                            </label>
+                            <div class="col-lg-6">
+                                <input id="nmActivo"
+                                       class="cts_forms form-control"
+                                       asp-for="@Model.Actual!.Activo" />
+                            </div>
+                        </div>
                     </div>
                </div>
             }
@@ -142,22 +159,22 @@
                     <table class="tb_data table table-striped table-bordered table-hover">
                         <tr>
                             <th>
-                                @lib_lenguajes.RsPersonas.clId
+                                Id
                             </th>
                             <th class="cl_hidden">
-                                @lib_lenguajes.RsPersonas.clCedula
+                                Cedula
                             </th>
                             <th class="cl_hidden">
-                                @lib_lenguajes.RsPersonas.clNombre
+                                Nombre
                             </th>
                             <th class="cl_hidden">
-                                @lib_lenguajes.RsPersonas.clEdad
+                                Edad
                             </th>
                             <th class="cl_hidden">
-                                @lib_lenguajes.RsPersonas.clActivo
+                                Activo
                             </th>
                             <th class="cl_actions">
-                                @lib_lenguajes.RsMenu.lbAccion
+                                Accion
                             </th>
                         </tr>
                         @if (Model != null && Model.Lista != null)
