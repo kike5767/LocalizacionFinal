@@ -1,10 +1,25 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Mapa General";
 }
+@* implementamos Leaflet.js para el uso del mapa *@
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+@* inicializamos un tamaño para el mapa *@
+<div id="map" style="height: 400px; width: 100%;"></div>
+
+@* realizamos el punto por defecto del mapa y se establece la conecion con OpenStreetMap *@
+<script>
+    const map = L.map('map').setView([6.25184, -75.56359], 13);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    L.marker([6.25184, -75.56359]).addTo(map)
+        .bindPopup('Marca por defecto')
+        .openPopup();
+</script>
