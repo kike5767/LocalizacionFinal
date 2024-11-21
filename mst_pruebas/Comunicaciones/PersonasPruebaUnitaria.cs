@@ -1,107 +1,101 @@
-﻿using lib_comunicaciones.Implementaciones;
-using lib_comunicaciones.Interfaces;
-using lib_entidades.Modelos;
-using lib_utilidades;
+﻿using lib_comunicaciones.Implementaciones; // Implementaciones de las interfaces de comunicación
+using lib_comunicaciones.Interfaces; // Definición de interfaces
+using lib_entidades.Modelos; // Modelos de datos
+using lib_utilidades; // Utilidades para conversión JSON
 
 namespace mst_pruebas.Comunicaciones
 {
-    [TestClass]
-    public class PersonasPruebaUnitaria
+    [TestClass] // Indica que esta clase contiene pruebas unitarias
+    public class UsuarioAutenticacion
     {
-        private IPersonasComunicacion? iComunicacion = null;
-        private Personas? entidad = null;
-        private List<Personas>? lista = null;
+        private IUsuarioComunicacion? iComunicacion = null; // Interfaz para manejo de usuarios
+        private Usuario? usuario = null; // Usuario de prueba
+        private Dictionary<string, object>? resultado = null; // Almacena resultados de pruebas
 
-        public PersonasPruebaUnitaria()
+        // Constructor para inicializar la comunicación con `UsuarioComunicacion`
+        public UsuarioAutenticacion()
         {
-            iComunicacion = new PersonasComunicacion();
+            iComunicacion = new UsuarioComunicacion();
         }
 
-        [TestMethod]
-        public void Executar()
+        [TestMethod] // Método principal que ejecuta todas las pruebas
+        public void Ejecutar()
         {
-            Guardar();
-            Listar();
-            Buscar();
-            Modificar();
-            Borrar();
+            Registro();     // Prueba para el registro de usuarios
+            Login();        // Prueba para la autenticación
+            Actualizar();   // Prueba para actualización de datos
+            Eliminar();     // Prueba para eliminar el usuario
         }
 
-        private void Listar()
+        private void Registro()
         {
             var datos = new Dictionary<string, object>();
-            var task = iComunicacion!.Listar(datos);
-            task.Wait();
-            datos = task.Result;
-            Assert.IsTrue(!datos.ContainsKey("Error"));
-
-            lista = JsonConversor.ConvertirAObjeto<List<Personas>>(
-                JsonConversor.ConvertirAString(datos["Entidades"]));
-        }
-
-        private void Buscar()
-        {
-            var datos = new Dictionary<string, object>();
-            datos["Entidad"] = entidad!;
-            datos["Tipo"] = "NOMBRE";
-
-            var task = iComunicacion!.Buscar(datos);
-            task.Wait();
-            datos = task.Result;
-            Assert.IsTrue(!datos.ContainsKey("Error"));
-
-            lista = JsonConversor.ConvertirAObjeto<List<Personas>>(
-                JsonConversor.ConvertirAString(datos["Entidades"]));
-        }
-
-        public void Guardar()
-        {
-            var datos = new Dictionary<string, object>();
-            entidad = new Personas()
+            usuario = new Usuario()
             {
-                Cedula = "1234",
-                Nombre = "Test 1",
-                Edad = 20,
-                Activo = true,
+                NombreUsuario = "usuario_prueba", // Nombre de usuario de prueba
+                Contrasena = "123456",           // Contraseña de prueba
+                Email = "correo@prueba.com",     // Email de prueba
+                Activo = true
             };
-            datos["Entidad"] = entidad!;
+            datos["Entidad"] = usuario!;
 
-            var task = iComunicacion!.Guardar(datos);
+            // Ejecuta la operación de registro
+            var task = iComunicacion!.Registrar(datos);
             task.Wait();
-            datos = task.Result;
-            Assert.IsTrue(!datos.ContainsKey("Error"));
+            resultado = task.Result;
 
-            entidad = JsonConversor.ConvertirAObjeto<Personas>(
-                JsonConversor.ConvertirAString(datos["Entidad"]));
+            Assert.IsTrue(!resultado!.ContainsKey("Error")); // Verifica que no haya errores
+
+            usuario = JsonConversor.ConvertirAObjeto<Usuario>(
+                JsonConversor.ConvertirAString(resultado["Entidad"]));
         }
 
-        public void Modificar()
+        private void Login()
         {
-            var datos = new Dictionary<string, object>();
-            entidad!.Cedula = "4321";
-            datos["Entidad"] = entidad!;
+            var datos = new Dictionary<string, object>
+            {
+                ["Usuario"] = usuario!.NombreUsuario,
+                ["Contrasena"] = usuario!.Contrasena
+            };
 
-            var task = iComunicacion!.Modificar(datos);
+            // Ejecuta la operación de autenticación
+            var task = iComunicacion!.Autenticar(datos);
             task.Wait();
-            datos = task.Result;
-            Assert.IsTrue(!datos.ContainsKey("Error"));
+            resultado = task.Result;
 
-            entidad = JsonConversor.ConvertirAObjeto<Personas>(
-                JsonConversor.ConvertirAString(datos["Entidad"]));
+            Assert.IsTrue(!resultado!.ContainsKey("Error")); // Verifica que no haya errores
         }
 
-        public void Borrar()
+        private void Actualizar()
         {
             var datos = new Dictionary<string, object>();
-            datos["Entidad"] = entidad!;
+            usuario!.Email = "nuevo_correo@prueba.com"; // Cambia el correo electrónico
+            datos["Entidad"] = usuario!;
 
-            var task = iComunicacion!.Borrar(datos);
+            // Ejecuta la operación de actualización
+            var task = iComunicacion!.Actualizar(datos);
             task.Wait();
-            datos = task.Result;
-            Assert.IsTrue(!datos.ContainsKey("Error"));
+            resultado = task.Result;
 
-            entidad = JsonConversor.ConvertirAObjeto<Personas>(
-                JsonConversor.ConvertirAString(datos["Entidad"]));
+            Assert.IsTrue(!resultado!.ContainsKey("Error")); // Verifica que no haya errores
+
+            usuario = JsonConversor.ConvertirAObjeto<Usuario>(
+                JsonConversor.ConvertirAString(resultado["Entidad"]));
+        }
+
+        private void Eliminar()
+        {
+            var datos = new Dictionary<string, object>
+            {
+                ["Entidad"] = usuario! // Define la entidad a eliminar
+            };
+
+            // Ejecuta la operación de eliminación
+            var task = iComunicacion!.Eliminar(datos);
+            task.Wait();
+            resultado = task.Result;
+
+            Assert.IsTrue(!resultado!.ContainsKey("Error")); // Verifica que no haya errores
         }
     }
 }
