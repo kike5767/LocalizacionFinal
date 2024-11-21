@@ -1,106 +1,118 @@
-﻿using lib_comunicaciones.Implementaciones;
-using lib_comunicaciones.Interfaces;
-using lib_entidades.Modelos;
-using lib_utilidades;
+﻿using lib_comunicaciones.Implementaciones; // Implementaciones de interfaces
+using lib_comunicaciones.Interfaces; // Definición de interfaces
+using lib_entidades.Modelos; // Modelos de datos
+using lib_utilidades; // Utilidades de conversión JSON
 
 namespace mst_pruebas.Comunicaciones
 {
-    [TestClass]
-    public class UbicacionesPruebaUnitaria
+    [TestClass] // Indica que esta clase contiene pruebas unitarias
+    public class RolesGestion
     {
-        private IUbicacionesComunicacion? iComunicacion = null;
-        private Ubicaciones? entidad = null;
-        private List<Ubicaciones>? lista = null;
+        private IRolesComunicacion? iComunicacion = null; // Interfaz para gestionar roles
+        private Rol? rol = null; // Instancia de prueba
+        private List<Rol>? lista = null; // Lista para almacenar resultados
 
-        public UbicacionesPruebaUnitaria()
+        // Constructor para inicializar la comunicación
+        public RolesGestion()
         {
-            iComunicacion = new UbicacionesComunicacion();
+            iComunicacion = new RolesComunicacion();
         }
 
-        [TestMethod]
-        public void Executar()
+        [TestMethod] // Método principal que ejecuta todas las pruebas
+        public void Ejecutar()
         {
-            Guardar();
-            Listar();
-            Buscar();
-            Modificar();
-            Borrar();
+            Crear();     // Prueba para crear un rol
+            Listar();    // Prueba para listar roles
+            Buscar();    // Prueba para buscar un rol
+            Modificar(); // Prueba para modificar un rol
+            Eliminar();  // Prueba para eliminar un rol
+        }
+
+        private void Crear()
+        {
+            var datos = new Dictionary<string, object>();
+            rol = new Rol()
+            {
+                Nombre = "Administrador", // Nombre del rol
+                Descripcion = "Rol con todos los permisos"
+            };
+            datos["Entidad"] = rol!;
+
+            // Ejecuta la operación de creación
+            var task = iComunicacion!.Crear(datos);
+            task.Wait();
+            var resultado = task.Result;
+
+            Assert.IsTrue(!resultado.ContainsKey("Error")); // Verifica que no haya errores
+
+            rol = JsonConversor.ConvertirAObjeto<Rol>(
+                JsonConversor.ConvertirAString(resultado["Entidad"]));
         }
 
         private void Listar()
         {
             var datos = new Dictionary<string, object>();
+
+            // Ejecuta la operación de listar roles
             var task = iComunicacion!.Listar(datos);
             task.Wait();
-            datos = task.Result;
-            Assert.IsTrue(!datos.ContainsKey("Error"));
+            var resultado = task.Result;
 
-            lista = JsonConversor.ConvertirAObjeto<List<Ubicaciones>>(
-                JsonConversor.ConvertirAString(datos["Entidades"]));
+            Assert.IsTrue(!resultado.ContainsKey("Error")); // Verifica que no haya errores
+
+            lista = JsonConversor.ConvertirAObjeto<List<Rol>>(
+                JsonConversor.ConvertirAString(resultado["Entidades"]));
         }
 
         private void Buscar()
         {
-            var datos = new Dictionary<string, object>();
-            datos["Entidad"] = entidad!;
-            datos["Tipo"] = "NOMBRE";
+            var datos = new Dictionary<string, object>
+            {
+                ["Entidad"] = rol!, // Busca con la instancia de prueba
+                ["Tipo"] = "NOMBRE" // Tipo de búsqueda
+            };
 
+            // Ejecuta la operación de búsqueda
             var task = iComunicacion!.Buscar(datos);
             task.Wait();
-            datos = task.Result;
-            Assert.IsTrue(!datos.ContainsKey("Error"));
+            var resultado = task.Result;
 
-            lista = JsonConversor.ConvertirAObjeto<List<Ubicaciones>>(
-                JsonConversor.ConvertirAString(datos["Entidades"]));
+            Assert.IsTrue(!resultado.ContainsKey("Error")); // Verifica que no haya errores
+
+            lista = JsonConversor.ConvertirAObjeto<List<Rol>>(
+                JsonConversor.ConvertirAString(resultado["Entidades"]));
         }
 
-        public void Guardar()
+        private void Modificar()
         {
             var datos = new Dictionary<string, object>();
-            entidad = new Ubicaciones()
-            {
-                Latitud = 6.244922241492459M,
-                Longitud = -75.55001051413606M,
-                Activo = true,
-            };
-            datos["Entidad"] = entidad!;
+            rol!.Descripcion = "Descripción actualizada"; // Cambia la descripción
+            datos["Entidad"] = rol!;
 
-            var task = iComunicacion!.Guardar(datos);
-            task.Wait();
-            datos = task.Result;
-            Assert.IsTrue(!datos.ContainsKey("Error"));
-
-            entidad = JsonConversor.ConvertirAObjeto<Ubicaciones>(
-                JsonConversor.ConvertirAString(datos["Entidad"]));
-        }
-
-        public void Modificar()
-        {
-            var datos = new Dictionary<string, object>();
-            entidad!.Latitud = 4.244922241492459M;
-            datos["Entidad"] = entidad!;
-
+            // Ejecuta la operación de modificación
             var task = iComunicacion!.Modificar(datos);
             task.Wait();
-            datos = task.Result;
-            Assert.IsTrue(!datos.ContainsKey("Error"));
+            var resultado = task.Result;
 
-            entidad = JsonConversor.ConvertirAObjeto<Ubicaciones>(
-                JsonConversor.ConvertirAString(datos["Entidad"]));
+            Assert.IsTrue(!resultado.ContainsKey("Error")); // Verifica que no haya errores
+
+            rol = JsonConversor.ConvertirAObjeto<Rol>(
+                JsonConversor.ConvertirAString(resultado["Entidad"]));
         }
 
-        public void Borrar()
+        private void Eliminar()
         {
-            var datos = new Dictionary<string, object>();
-            datos["Entidad"] = entidad!;
+            var datos = new Dictionary<string, object>
+            {
+                ["Entidad"] = rol! // Define el rol a eliminar
+            };
 
-            var task = iComunicacion!.Borrar(datos);
+            // Ejecuta la operación de eliminación
+            var task = iComunicacion!.Eliminar(datos);
             task.Wait();
-            datos = task.Result;
-            Assert.IsTrue(!datos.ContainsKey("Error"));
+            var resultado = task.Result;
 
-            entidad = JsonConversor.ConvertirAObjeto<Ubicaciones>(
-                JsonConversor.ConvertirAString(datos["Entidad"]));
+            Assert.IsTrue(!resultado.ContainsKey("Error")); // Verifica que no haya errores
         }
     }
 }
