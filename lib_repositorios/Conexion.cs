@@ -1,5 +1,6 @@
 ﻿// Librerias
 using lib_entidades.Modelos;
+using lib_repositorios.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 

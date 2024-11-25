@@ -6,16 +6,14 @@ using System.Linq.Expressions;
 // Proyecto
 namespace lib_repositorios.Implementaciones
 {
-    public class UbicacionesRepositorio : IUbicacionesRepositorio
+    public class AuditoriaRepositorio : IAuditoriaRepositorio
     {
         // Variable de tipo conexion para interactuar con la DB
         private Conexion? conexion;
-        private IAuditoriaRepositorio? iAuditoriaRepositorio;
         // Constructor
-        public UbicacionesRepositorio(Conexion conexion, IAuditoriaRepositorio? iAuditoriaRepositorio)
+        public AuditoriaRepositorio(Conexion conexion)
         {
             this.conexion = conexion;
-            this.iAuditoriaRepositorio = iAuditoriaRepositorio;
         }
         // Metodos definidos por la interfaz y llamado a metodos de la clase Conexion
         public void Configurar(string string_conexion)
@@ -23,22 +21,17 @@ namespace lib_repositorios.Implementaciones
             this.conexion!.StringConnection = string_conexion;
         }
         // Obtener todas las entidades
-        public List<Ubicaciones> Listar()
+        public List<Auditoria> Listar()
         {
-            iAuditoriaRepositorio!.Guardar(new Auditoria()
-            {
-                Tabla = "DetallesImagenes",
-                Id = 1
-            });
-            return conexion!.Listar<Ubicaciones>();
+            return conexion!.Listar<Auditoria>();
         }
         // Buscar entidades bajo determinadas condiciones
-        public List<Ubicaciones> Buscar(Expression<Func<Ubicaciones, bool>> condiciones)
+        public List<Auditoria> Buscar(Expression<Func<Auditoria, bool>> condiciones)
         {
             return conexion!.Buscar(condiciones);
         }
         // Guardar una nueva entidad
-        public Ubicaciones Guardar(Ubicaciones entidad)
+        public Auditoria Guardar(Auditoria entidad)
         {
             conexion!.Guardar(entidad);
             conexion!.GuardarCambios();
@@ -46,7 +39,7 @@ namespace lib_repositorios.Implementaciones
             return entidad;
         }
         // Modificar una entidad ya existente
-        public Ubicaciones Modificar(Ubicaciones entidad)
+        public Auditoria Modificar(Auditoria entidad)
         {
             conexion!.Modificar(entidad);
             conexion!.GuardarCambios();
@@ -54,7 +47,7 @@ namespace lib_repositorios.Implementaciones
             return entidad;
         }
         // Borrar una entidad ya existente
-        public Ubicaciones Borrar(Ubicaciones entidad)
+        public Auditoria Borrar(Auditoria entidad)
         {
             conexion!.Borrar(entidad);
             conexion!.GuardarCambios();
@@ -62,7 +55,7 @@ namespace lib_repositorios.Implementaciones
             return entidad;
         }
         // Verificar la existencia de una entidad que cumple ciertas condiciones y devuelve un valor booleano
-        public bool Existe(Expression<Func<Ubicaciones, bool>> condiciones)
+        public bool Existe(Expression<Func<Auditoria, bool>> condiciones)
         {
             return conexion!.Existe(condiciones);
         }

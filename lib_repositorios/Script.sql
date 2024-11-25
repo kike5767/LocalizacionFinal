@@ -103,6 +103,15 @@ CREATE TABLE Localizaciones
 );
 GO
 
+CREATE TABLE Auditorias
+(
+	[Id] INT NOT NULL IDENTITY(1, 1) PRIMARY KEY,
+	[Tabla] NVARCHAR(50),
+	[Referencia] INT,
+	[Accion] NVARCHAR(50)
+);
+GO
+
 INSERT INTO [Localizaciones] ([personas],[localidades],[ubicaciones],[imagenes],[detalles],[Hora],[Activo])
 VALUES (1,1,1,1,1,CAST(GETDATE() AS TIME),1);
 

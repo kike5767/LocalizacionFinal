@@ -25,7 +25,8 @@ namespace asp_servicios
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
             services.AddScoped<Conexion, Conexion>();
-            // Repositorios
+            // Repositorios}
+            services.AddScoped<IAuditoriaRepositorio, AuditoriaRepositorio>();
             services.AddScoped<IDetallesImagenesRepositorio, DetallesImagenesRepositorio>();
             services.AddScoped<IImagenesRepositorio, ImagenesRepositorio>();
             services.AddScoped<ILocalidadesRepositorio, LocalidadesRepositorio>();
@@ -40,8 +41,13 @@ namespace asp_servicios
             services.AddScoped<IPersonasAplicacion, PersonasAplicacion>();
             services.AddScoped<IUbicacionesAplicacion, UbicacionesAplicacion>();
             // Controladores
+            services.AddScoped<DetallesImagenesController, DetallesImagenesController>();
+            services.AddScoped<ImagenesController, ImagenesController>();
+            services.AddScoped<LocalidadesController, LocalidadesController>();
+            services.AddScoped<LocalizacionesController, LocalizacionesController>();
+            services.AddScoped<PersonasController, PersonasController>();
             services.AddScoped<TokenController, TokenController>();
-
+            services.AddScoped<UbicacionesController, UbicacionesController>();
             services.AddCors(o => o.AddDefaultPolicy(b => b.AllowAnyOrigin()));
         }
 

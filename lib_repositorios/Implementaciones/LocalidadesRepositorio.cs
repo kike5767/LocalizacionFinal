@@ -10,10 +10,12 @@ namespace lib_repositorios.Implementaciones
     {
         // Variable de tipo conexion para interactuar con la DB
         private Conexion? conexion;
+        private IAuditoriaRepositorio? iAuditoriaRepositorio;
         // Constructor
-        public LocalidadesRepositorio(Conexion conexion)
+        public LocalidadesRepositorio(Conexion conexion, IAuditoriaRepositorio? iAuditoriaRepositorio)
         {
             this.conexion = conexion;
+            this.iAuditoriaRepositorio = iAuditoriaRepositorio;
         }
         // Metodos definidos por la interfaz y llamado a metodos de la clase Conexion
         public void Configurar(string string_conexion)
@@ -23,6 +25,11 @@ namespace lib_repositorios.Implementaciones
         // Obtener todas las entidades
         public List<Localidades> Listar()
         {
+            iAuditoriaRepositorio!.Guardar(new Auditoria()
+            {
+                Tabla = "Localidades",
+                Id = 1
+            });
             return conexion!.Listar<Localidades>();
         }
         // Buscar entidades bajo determinadas condiciones
